@@ -52,6 +52,16 @@
 ;; improvment for use-package
 (use-package quelpa-use-package)
 
+;; Use auto-package-update
+;; Automatically update packages
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 7)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results nil)
+  :config
+  (auto-package-update-maybe))
+
 ;; Use ivy
 ;; Advanced completion
 ;; swiper (search): ivy--regex-plus rule
@@ -149,6 +159,9 @@
   :config
   (setq company-box-backends-colors '((company-capf :all "white" :selected (:background "lime" :foreground "black")))))
 
+;; Use flycheck
+(use-package flycheck)
+
 ;; Use lsp-mode
 (use-package lsp-mode
   :init
@@ -165,7 +178,9 @@
   :config
   (setq lsp-ui-sideline-show-hover t)
   (setq lsp-ui-sideline-show-code-actions t)
-  (setq lsp-ui-doc-enable nil))
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-diagnostics-provider :auto)
+  (setq lsp-ui-sideline-show-diagnostics t))
 
 ;; Use lsp-treemacs
 (use-package lsp-treemacs
@@ -174,12 +189,20 @@
   :init
   (treemacs-resize-icons 16))
 
+;; Use dap-mode
+;; debugging tool for lsp
+(use-package dap-mode)
+
 ;; Use python-mode
 ;; Load lsp when mode starts
 (use-package python-mode
+  :ensure nil
   :mode "\\.py\\'"
   :hook
-  (python-mode . lsp-deferred))
+  (python-mode . lsp-deferred)
+  :custom
+  (python-shell-intxerpreter "python3")
+  (lsp-pyls-plugins-flake8-enabled t))
 
 ;; Use js2-mode
 ;; Load lsp when mode starts
@@ -243,12 +266,6 @@
   :hook
   (dockerfile-mode . lsp-deferred))
 
-;; Use solidity-mode
-;; binary depends on the installation
-(use-package solidity-mode
-  :custom
-  (solidity-solc-path "solcjs"))
-
 ;; Use dired
 ;; ensure: nil, don't install native package
 ;; -a: display files / folders starting with '.'
@@ -296,10 +313,6 @@
   (add-hook 'json-mode-hook 'prettier-js-mode)
   (add-hook 'yaml-mode-hook 'prettier-js-mode))
 
-;; Use dap-mode
-;; debugging tool for lsp
-(use-package dap-mode)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -307,7 +320,7 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(import-cost-mode quelpa-use-package dap-mode dired-hide-dotfiles all-the-icons-dired dired-single dired lsp-treemacs python-mode vue-mode dockerfile-mode js2-mode dotenv-mode yaml-mode prettier-js json-mode typescript-mode lsp-ui lsp-mode company-box company magit projectile which-key helpful ivy-rich doom-modeline counsel ivy use-package)))
+   '(flycheck auto-package-update auto-update-package quelpa-use-package dap-mode dired-hide-dotfiles all-the-icons-dired dired-single dired lsp-treemacs vue-mode dockerfile-mode js2-mode dotenv-mode yaml-mode prettier-js json-mode typescript-mode lsp-ui lsp-mode company-box company magit projectile which-key helpful ivy-rich doom-modeline counsel ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
