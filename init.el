@@ -313,6 +313,10 @@
   (add-hook 'json-mode-hook 'prettier-js-mode)
   (add-hook 'yaml-mode-hook 'prettier-js-mode))
 
+;; Use michelson-mode
+(use-package michelson-mode
+  :quelpa (michelson-mode :fetcher url :url "https://gitlab.com/tezos/tezos/-/raw/master/emacs/michelson-mode.el"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -320,7 +324,7 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(flycheck auto-package-update auto-update-package quelpa-use-package dap-mode dired-hide-dotfiles all-the-icons-dired dired-single dired lsp-treemacs vue-mode dockerfile-mode js2-mode dotenv-mode yaml-mode prettier-js json-mode typescript-mode lsp-ui lsp-mode company-box company magit projectile which-key helpful ivy-rich doom-modeline counsel ivy use-package)))
+   '(michelson-mode flycheck auto-package-update auto-update-package quelpa-use-package dap-mode dired-hide-dotfiles all-the-icons-dired dired-single dired lsp-treemacs vue-mode dockerfile-mode js2-mode dotenv-mode yaml-mode prettier-js json-mode typescript-mode lsp-ui lsp-mode company-box company magit projectile which-key helpful ivy-rich doom-modeline counsel ivy use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
