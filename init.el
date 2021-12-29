@@ -255,8 +255,14 @@
   (yaml-mode . lsp-deferred)
   :mode "\\.yml")
 
-;; Use dotenv-mode
+;; Use rust-mode
 ;; Load lsp when mode starts
+(use-package rust-mode
+  :hook
+  (rust-mode . lsp-deferred)
+  :mode "\\.rs")
+
+;; Use dotenv-mode
 (use-package dotenv-mode
   :mode "\\.env")
 
@@ -324,7 +330,8 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(michelson-mode flycheck auto-package-update auto-update-package quelpa-use-package dap-mode dired-hide-dotfiles all-the-icons-dired dired-single dired lsp-treemacs vue-mode dockerfile-mode js2-mode dotenv-mode yaml-mode prettier-js json-mode typescript-mode lsp-ui lsp-mode company-box company magit projectile which-key helpful ivy-rich doom-modeline counsel ivy use-package)))
+   (quote
+    (rust-mode michelson-mode flycheck auto-package-update auto-update-package quelpa-use-package dap-mode dired-hide-dotfiles all-the-icons-dired dired-single dired lsp-treemacs vue-mode dockerfile-mode js2-mode dotenv-mode yaml-mode prettier-js json-mode typescript-mode lsp-ui lsp-mode company-box company magit projectile which-key helpful ivy-rich doom-modeline counsel ivy use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
